@@ -66,7 +66,6 @@ and its members were either captured or remain pinned down in stealth.
             { name = 'corshroud',  x = 750,   y = 222, z = 400,  rot = 0,      team = 0, neutral = false },
             { name = 'cormoho',    x = 720,   y = 214, z = 160,  rot = 16384,  team = 0, neutral = false },
             { name = 'cormoho',    x = 448,   y = 221, z = 144,  rot = 16384,  team = 0, neutral = false },
-            { name = 'coreyes',    x = 6000,  y = 66,  z = 4350, rot = 0,      team = 0, neutral = false },
             { name = 'coreyes',    x = 8585,  y = -5,  z = 1840, rot = 0,      team = 0, neutral = false },
             { name = 'coreyes',    x = 3500,  y = 85,  z = 4250, rot = 0,      team = 0, neutral = false },
             { name = 'coreyes',    x = 7892,  y = -5,  z = 1855, rot = 0,      team = 0, neutral = false },
@@ -158,7 +157,7 @@ and its members were either captured or remain pinned down in stealth.
             { name = 'armfort',    x = 9432,  y = 79,  z = 3550, rot = -16384, team = 1, neutral = true },
             { name = 'armfort',    x = 9368,  y = 79,  z = 3550, rot = -16384, team = 1, neutral = true },
             { name = 'armbeamer',  x = 6100,  y = 92,  z = 3950, rot = -16384, team = 1, neutral = false },
-            { name = 'armbeamer',  x = 6350,  y = 65,  z = 4200, rot = -16384, team = 1, neutral = false },
+            { name = 'armbeamer',  x = 6300,  y = 65,  z = 4200, rot = -16384, team = 1, neutral = false },
             { name = 'armbeamer',  x = 6380,  y = 21,  z = 4500, rot = -16384, team = 1, neutral = false },
             { name = 'armflak',    x = 6360,  y = 47,  z = 4350, rot = -16384, team = 1, neutral = false },
             { name = 'armflak',    x = 8800,  y = 93,  z = 3500, rot = -16384, team = 1, neutral = false },
@@ -252,7 +251,7 @@ and its members were either captured or remain pinned down in stealth.
 		Name = Armada Stronghold Guard;
 		ShortName = NullAI;
 		Team = 1;
-		Version = stable;
+		Version = 0.1;
 	}
 
 	[ai1]
@@ -262,7 +261,7 @@ and its members were either captured or remain pinned down in stealth.
 		Name = Captive Commando;
 		ShortName = NullAI;
 		Team = 2;
-		Version = stable;
+		Version = 0.1;
 	}
 
 	[modoptions]

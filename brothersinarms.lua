@@ -5,8 +5,8 @@ end
 local prisonerFreed = false
 local allPatrolsKilled = false
 local warheadObjectiveKilled = false
-local squad1PatrolDirection = true
-local squad2PatrolDirection = true
+local squad1PatrolDirection = false
+local squad2PatrolDirection = false
 local warheadUnitID = -1
 local nukeWreckFeatureID = -1
 
@@ -284,6 +284,8 @@ local function CreateUnits(loadout)
 end
 
 local function CreateInitialLoadout()
+	Spring.SetGameRulesParam('ainame_' .. 1, 'Armada Stronghold Guard')
+	Spring.SetGameRulesParam('ainame_' .. 2, 'Captive Cortex Commando')
 	CreateUnits(criticalUnits)
 	CreateUnit(jailorUnit)
 	CreateUnit(warheadObjectiveUnit)
@@ -360,7 +362,7 @@ function gadget:GameFrame(frameNumber)
 		OrderSquad1ToPatrol()
 	end
 
-	if frameNumber % 900 == 0 then -- every 30 sec
+	if frameNumber % 840 == 0 then -- every 28 sec
 		OrderSquad2ToPatrol()
 	end
 end
