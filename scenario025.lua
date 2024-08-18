@@ -15,24 +15,20 @@ terrible vengance to the Armada scum.
     [[For a few decades now, your team of special ops commandos have fought like brothers behind enemy lines. But now
 the enemy has done the unthinkable, and executed one of your team members held prisoner.
 
-   Their target was a newly completed Armada ICBM silo, which was successfully eliminated. But the team was discovered,
-and its members were either captured or remain pinned down in stealth.
+   During a recent mission at a remote Armada outpost, the team was discovered and its members were either captured or remain pinned down in stealth.
 
 --Objectives--
  1.  Your mission is to infiltrate the enemy base and free all remaining team members.
- 2.  Then, with their help, secure the site of the destroyed ICBM silo, salvage the wreck, and gather any warheads that may still be operational.
- 3.  Tear down the Armada stronghold by bringing a nuclear warhead to the pulsar turret at the back of the base. This will make it detonate. Stay clear of the blast!
- 4.  Lastly, eliminate the entire Armada ground force, patrolling throughout the stronghold. Show them no mercy! (The grunts will clean up the rest)
+ 2.  Then, eliminate the entire Armada ground force, patrolling throughout the stronghold. Show them no mercy! (The grunts will clean up the rest)
+ 3.  Lastly, tear down the Armada stronghold's central defenses by bringing down the pulsar turret at the back of the base.
 
 --Tips--
  ‣  A frontal assault is not recommended.
  ‣  Commandos are special ops units, that can both fight, repair, reclaim, as well as build a few support units.
  ‣  Repairing, building, and reclaiming do not require line of sight, and so can be done through cliffs and other terrian.
- ‣  Unlike most units, commandos don't blow up along with the air transport carrying them. Instead, they gently float down and land (mostly) unharmed.
- ‣  Order your commandos to repair an area around themselves while shooting to have them repair each other during open combat.
+ ‣  Unlike most units, commandos don't blow up along with the air transport carrying them. Instead, they float down gently and land (mostly) unharmed.
  ‣  Commandos are stealthy, and so will not be fired upon while out of sight. They can not cloak, however.
- ‣  Commandos are amphibious units, but they can not shoot under water.
- ‣  Reclaim enemy units that you can not shoot.
+ ‣  Commandos are amphibious units, but they can not shoot under water. Reclaim units that you can not shoot.
  ‣  Build mines repeatedly within blast radius of enemy structures to blow them up.
  ‣  Enemy turrets will not shoot through terrain, friendly buildings, or walls.
  ‣  The enemy is producing no units at this location, so there's no need to rush into danger.
@@ -66,7 +62,8 @@ and its members were either captured or remain pinned down in stealth.
             { name = 'corshroud',  x = 750,   y = 222, z = 400,  rot = 0,      team = 0, neutral = false },
             { name = 'cormoho',    x = 720,   y = 214, z = 160,  rot = 16384,  team = 0, neutral = false },
             { name = 'cormoho',    x = 448,   y = 221, z = 144,  rot = 16384,  team = 0, neutral = false },
-            { name = 'coreyes',    x = 8585,  y = -5,  z = 1840, rot = 0,      team = 0, neutral = false },
+            { name = 'coreyes',    x = 8100,  y = -5,  z = 1630, rot = 0,      team = 0, neutral = false },
+            { name = 'coreyes',    x = 8870,  y = -5,  z = 2290, rot = 0,      team = 0, neutral = false },
             { name = 'coreyes',    x = 3500,  y = 85,  z = 4250, rot = 0,      team = 0, neutral = false },
             { name = 'coreyes',    x = 7892,  y = -5,  z = 1855, rot = 0,      team = 0, neutral = false },
 
@@ -179,8 +176,13 @@ and its members were either captured or remain pinned down in stealth.
             { name = 'armfort',    x = 5884,  y = 106, z = 4528, rot = -16384, team = 1, neutral = true },
             { name = 'armfort',    x = 5900,  y = 115, z = 4560, rot = -16384, team = 1, neutral = true },
             { name = 'armrl',      x = 9671,  y = 161, z = 1967, rot = 0,      team = 1, neutral = false },
-            { name = 'armamd',     x = 9614,  y = 94,  z = 3204, rot = 0,      team = 1, neutral = false },
-            { name = 'armrl',      x = 9529,  y = 160, z = 2774, rot = 0,      team = 1, neutral = false },
+            { name = 'armfort',    x = 5900,  y = 115, z = 4560, rot = -16384, team = 1, neutral = true },
+            { name = 'armfort',    x = 9614,  y = 94,  z = 3200, rot = 0,      team = 1, neutral = false },
+            { name = 'armfort',    x = 9614,  y = 94,  z = 3232, rot = 0,      team = 1, neutral = false },
+            { name = 'armfort',    x = 9614,  y = 94,  z = 3264, rot = 0,      team = 1, neutral = false },
+            { name = 'armfort',    x = 9900,  y = 160, z = 3368, rot = 0,      team = 1, neutral = false },
+            { name = 'armfort',    x = 9900,  y = 160, z = 3400, rot = 0,      team = 1, neutral = false },
+            { name = 'armfort',    x = 9900,  y = 160, z = 3432, rot = 0,      team = 1, neutral = false },
             { name = 'armbeamer',  x = 9896,  y = 188, z = 2405, rot = 0,      team = 1, neutral = false },
             { name = 'armbeamer',  x = 9338,  y = 77,  z = 1451, rot = 0,      team = 1, neutral = false },
             { name = 'armbeamer',  x = 9391,  y = 135, z = 2378, rot = 0,      team = 1, neutral = false },

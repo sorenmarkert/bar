@@ -4,11 +4,9 @@ end
 
 local prisonerFreed = false
 local allPatrolsKilled = false
-local warheadObjectiveKilled = false
+local objectiveUnitKilled = false
 local squad1PatrolDirection = false
 local squad2PatrolDirection = false
-local warheadUnitID = -1
-local nukeWreckFeatureID = -1
 
 local prisonerUnit =
 {
@@ -79,7 +77,7 @@ local jailorUnit =
 	}
 }
 
-local warheadObjectiveUnit = { name = 'armanni', x = 10100, y = 85, z = 3200, rot = -16384, team = 1, neutral = false }
+local objectiveUnit = { name = 'armanni', x = 10100, y = 85, z = 3200, rot = -16384, team = 1, neutral = false }
 
 local squad1Unit1 = { name = "armwar", x = 3600, y = 121, z = 2600, rot = -8268, team = 1, neutral = false }
 
@@ -133,7 +131,6 @@ local patrolUnits = {
 		queue = {
 			{ cmdID = CMD.PATROL, args = { 9800, 66, 100 } },
 			{ cmdID = CMD.PATROL, args = { 10150, 66, 100 } },
-			{ cmdID = CMD.PATROL, args = { 10150, 66, 600 } },
 		}
 	},
 	{
@@ -209,12 +206,6 @@ function gadget:UnitDestroyed(unitID, unitDefID)
 			return
 		end
 	end
-	-- Warhead unit died, lose game:
-	if unitID == warheadUnitID then
-		warheadUnitID = -1
-		LoseGame()
-		return
-	end
 	-- Jailor died, free prisoner:
 	if unitID == jailorUnit.unitID then
 		Spring.SendMessage('MISSION OBJECTIVE ACHIEVED: PRISONER FREED!')
@@ -223,10 +214,10 @@ function gadget:UnitDestroyed(unitID, unitDefID)
 		Spring.GiveOrderToUnit(prisonerUnit.unitID, CMD.FIRE_STATE, { 2 }, 0)
 		prisonerFreed = true
 	end
-	-- Jailor died, free prisoner:
-	if unitID == warheadObjectiveUnit.unitID then
+	-- :
+	if unitID == objectiveUnit.unitID then
 		Spring.SendMessage('MISSION OBJECTIVE ACHIEVED: TARGET DESTROYED!')
-		warheadObjectiveUnitKilled = true
+		objectiveUnitKilled = true
 	end
 	-- Objective unit died?
 	if not allPatrolsKilled then
@@ -242,23 +233,8 @@ function gadget:UnitDestroyed(unitID, unitDefID)
 		end
 	end
 	-- Mission complete? win game:
-	if prisonerFreed and warheadObjectiveUnitKilled and allPatrolsKilled then
+	if prisonerFreed and objectiveUnitKilled and allPatrolsKilled then
 		PlayerVictory()
-	end
-end
-
-function gadget:FeatureDestroyed(featureID)
-	if featureID == nukeWreckFeatureID then
-		Spring.SendMessage('MISSION OBJECTIVE ACHIEVED: WARHEAD ACQUIRED!')
-		warheadUnitID = Spring.CreateUnit("corroach", 10000, 77, 350, 0, 2)
-		Spring.TransferUnit(warheadUnitID, 0) -- to give voice alert
-		Spring.GiveOrderToUnit(warheadUnitID, CMD.MOVE_STATE, { 0 }, 0)
-		Spring.GiveOrderToUnit(warheadUnitID, CMD.FIRE_STATE, { 0 }, 0)
-		Spring.MarkerAddLine(10030, 130, 3130, 10030, 130, 3270)
-		Spring.MarkerAddLine(10170, 130, 3130, 10170, 130, 3270)
-		Spring.MarkerAddLine(10030, 130, 3130, 10170, 130, 3130)
-		Spring.MarkerAddLine(10030, 130, 3270, 10170, 130, 3270)
-		Spring.MarkerAddPoint(warheadObjectiveUnit.x, 150, warheadObjectiveUnit.z)
 	end
 end
 
@@ -288,35 +264,9 @@ local function CreateInitialLoadout()
 	Spring.SetGameRulesParam('ainame_' .. 2, 'Captive Cortex Commando')
 	CreateUnits(criticalUnits)
 	CreateUnit(jailorUnit)
-	CreateUnit(warheadObjectiveUnit)
+	CreateUnit(objectiveUnit)
 	CreateUnits(patrolUnits)
 	CreateUnits(scoutUnits)
-	nukeWreckFeatureID = Spring.CreateFeature("armsilo_dead", 10000, 77, 350)
-	Spring.SetFeatureResources(nukeWreckFeatureID, 100, 0, 100) -- shorten reclaim time
-end
-
-local function CheckWarheadAndDetonate()
-	if warheadUnitID >= 0 then
-		local x, y, z = Spring.GetUnitPosition(warheadUnitID)
-		if x > 10030 and x < 10170 and z > 3130 and z < 3270 and y < 130 then
-			local def = WeaponDefNames['advancedfusionexplosionselfd']
-			warheadUnitID = -1
-			Spring.SpawnExplosion(x, y, z, 0, 0, 0, {
-				weaponDef = def.id,
-				owner = -1,
-				damages = def.damages,
-				hitUnit = 1,
-				hitFeature = 1,
-				craterAreaOfEffect = 380,
-				damageAreaOfEffect = 380,
-				edgeEffectiveness = 0.5,
-				explosionSpeed = 5,
-				impactOnly = false,
-				ignoreOwner = false,
-				damageGround = true,
-			})
-		end
-	end
 end
 
 -- Make units patrol close together:
@@ -352,10 +302,6 @@ end
 function gadget:GameFrame(frameNumber)
 	if frameNumber <= 1 then
 		CreateInitialLoadout()
-	end
-
-	if frameNumber % 15 == 0 then -- every ½ sec
-		CheckWarheadAndDetonate()
 	end
 
 	if frameNumber % 2100 == 0 then -- every 70 sec
